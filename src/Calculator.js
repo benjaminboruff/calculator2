@@ -6,6 +6,7 @@ import Keypad from'./components/keypad';
 
 // type declarations for state and props
 type State = {
+  expression: string,
   result: number
 };
 
@@ -20,13 +21,27 @@ class Calculator extends Component<void, Props, State> {
 
   constructor(props: Object) {
     super(props);
-    this.state = {result: parseInt(this.props.input1,10) + parseInt(this.props.input2,10)};
+    this.state = {result: 0, expression: ""};
     // $FlowFixMe
     this.handleChange = this.handleChange.bind(this);
+    // $FlowFixMe
+    this.calculate = this.calculate.bind(this);
   }
 
   handleChange(event: SyntheticInputEvent){
-    this.setState({result: parseInt(event.target.value, 10)});
+    event.preventDefault();
+    //if(event.key === 'Enter') {
+      console.log(event.target.value);
+      this.setState({expression: event.target.value});
+    //}
+  }
+
+  calculate(event: SyntheticInputEvent){
+    event.preventDefault();
+    //if(event.key === 'Enter') {
+      //console.log(event.target.value);
+      this.setState({result: eval(this.state.expression)});
+    //}
   }
 
   render() {
@@ -36,7 +51,7 @@ class Calculator extends Component<void, Props, State> {
           <h2>FCC Calculator</h2>
         </div>
         <Output result={this.state.result}/>
-        <Keypad handler={this.handleChange}/>
+        <Keypad handleChange={this.handleChange} calculate={this.calculate}/>
       </div>
     );
   }
