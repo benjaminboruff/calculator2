@@ -30,17 +30,19 @@ class Calculator extends Component<void, Props, State> {
 
   handleChange(event: SyntheticInputEvent){
     event.preventDefault();
-    //if(event.key === 'Enter') {
-      console.log(event.target.value);
-      this.setState({expression: event.target.value});
-    //}
+    // only allow proper patterns, e.g. 1+1+1... with whitespace, too
+    let regExpFilter = /^((?:[0-9]+(?:[+|\-|\*|/][0-9]+)*))+$/;
+    let inputArr = event.target.value.match(regExpFilter);
+    console.log(inputArr ? inputArr[0] : "ERROR");
+    this.setState({expression: inputArr ? inputArr[0] : "ERROR"});
+
   }
 
   calculate(event: SyntheticInputEvent){
     event.preventDefault();
     //if(event.key === 'Enter') {
       //console.log(event.target.value);
-      this.setState({result: eval(this.state.expression)});
+    this.setState({result: this.state.expression !== "ERROR" ? eval(this.state.expression) : this.state.result});
     //}
   }
 
