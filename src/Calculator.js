@@ -31,7 +31,8 @@ class Calculator extends Component<void, Props, State> {
   handleChange(event: SyntheticInputEvent){
     event.preventDefault();
     // only allow proper patterns, e.g. 1+1+1... with whitespace, too
-    let regExpFilter = /^((?:[0-9]+(?:[+|\-|\*|/][0-9]+)*))+$/;
+    //let regExpFilter = /^((?:[0-9]+(?:[+|\-|\*|/][0-9]+)*))+$/;
+    let regExpFilter = /^([0-9]*(\.(?!\.))?[0-9]+)([\+\-\*\/]{1}[0-9]*(\.(?!\.))?[0-9]*)*[^\+\-\*\/]$/;
     let inputArr = event.target.value.match(regExpFilter);
     console.log(inputArr ? inputArr[0] : "");
     this.setState({expression: inputArr ? inputArr[0] : this.state.expression});
