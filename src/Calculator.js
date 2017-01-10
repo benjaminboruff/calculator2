@@ -21,7 +21,7 @@ class Calculator extends Component<void, Props, State> {
 
   constructor(props: Object) {
     super(props);
-    this.state = {result: 0, expression: ""};
+    this.state = {result: 0, expression: "0"};
     // $FlowFixMe
     this.handleChange = this.handleChange.bind(this);
     // $FlowFixMe
@@ -30,9 +30,8 @@ class Calculator extends Component<void, Props, State> {
 
   handleChange(event: SyntheticInputEvent){
     event.preventDefault();
-    // only allow proper patterns, e.g. 1+1+1... with whitespace, too
-    //let regExpFilter = /^((?:[0-9]+(?:[+|\-|\*|/][0-9]+)*))+$/;
-    let regExpFilter = /^([0-9]*(\.(?!\.))?[0-9]+)([\+\-\*\/]{1}[0-9]*(\.(?!\.))?[0-9]*)*[^\+\-\*\/\.]$/;
+    // only allow proper patterns, e.g. .1+0.1+1 (no double .. or ending with an operator)
+    let regExpFilter = /^(\d*(\.(?!\.))?\d+)([\+\-\*\/]{1}\d*(\.(?!\.))?\d*)*[^\+\-\*\/\.]$/;
     let inputArr = event.target.value.match(regExpFilter);
     console.log(inputArr ? inputArr[0] : "");
     this.setState({expression: inputArr ? inputArr[0] : this.state.expression});
