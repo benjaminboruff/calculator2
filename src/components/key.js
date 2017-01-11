@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Key(props) {
-  return <button value={props.number} onClick={props.handleButtonClick}>{props.number}</button>;
+  return <button value={props.value} onClick={props.handleClick}>{props.value}</button>;
 }
 
 export default Key;
