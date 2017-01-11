@@ -10,22 +10,24 @@ type State = {
   result: number
 };
 
-type Props = {
-  input1: string,
-  input2: string
-};
+// type Props = {
+//   input1: string,
+//   input2: string
+// };
 
-class Calculator extends Component<void, Props, State> {
-  props: Props;
+class Calculator extends Component<void, void, State> {
+  //props: Props;
   state: State;
 
-  constructor(props: Object) {
+  constructor(props) {
     super(props);
-    this.state = {result: 0, expression: "0"};
+    this.state = {result: 0, expression: ""};
     // $FlowFixMe
     this.handleChange = this.handleChange.bind(this);
     // $FlowFixMe
     this.calculate = this.calculate.bind(this);
+    // $FlowFixMe
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   handleChange(event: SyntheticInputEvent){
@@ -36,6 +38,18 @@ class Calculator extends Component<void, Props, State> {
     console.log(inputArr ? inputArr[0] : "");
     this.setState({expression: inputArr ? inputArr[0] : this.state.expression});
 
+  }
+
+  handleButtonClick(event: SyntheticInputEvent){
+    event.preventDefault();
+    // only allow proper patterns, e.g. .1+0.1+1 (no double .. or ending with an operator)
+    let regExpFilter = /^(\d*(\.(?!\.))?\d+)([\+\-\*\/]{1}\d*(\.(?!\.))?\d*)*[^\+\-\*\/\.]$/;
+    let keyStr = event.target.value.toString();
+    let tmpExpression = this.state.expression ? this.state.expression + keyStr : keyStr;
+    console.log(tmpExpression);
+    let inputArr = tmpExpression.match(regExpFilter);
+    console.log(inputArr ? inputArr[0] : "FAIL");
+    this.setState({expression: inputArr ? inputArr[0] : this.state.expression});
   }
 
   calculate(event: SyntheticInputEvent){
@@ -54,7 +68,10 @@ class Calculator extends Component<void, Props, State> {
           <h2>FCC Calculator</h2>
         </div>
         <Output result={this.state.result}/>
-        <Keypad handleChange={this.handleChange} calculate={this.calculate}/>
+        <Keypad handleChange={this.handleChange}
+          calculate={this.calculate}
+          handleButtonClick={this.handleButtonClick}
+          expression={this.state.expression}/>
       </div>
     );
   }
