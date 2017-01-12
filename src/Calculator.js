@@ -1,4 +1,7 @@
 // @flow
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
+import { Layout, Content } from 'react-mdl';
 import React, { Component } from 'react';
 import './Calculator.css';
 import Output from'./components/output';
@@ -27,6 +30,9 @@ class Calculator extends Component<void, void, State> {
   // handle 0-1 and operator buttons
   handleButtonClick(event: SyntheticInputEvent){
     event.preventDefault();
+    // if(event.target.value.match(/\+\-\*\/]/)) {
+    // STRIP OCTAL!!!!!
+    // }
     this.setState({input: this.state.input + event.target.value});
   }
   // handle CLEAR and UNDO buttons
@@ -62,15 +68,16 @@ class Calculator extends Component<void, void, State> {
 
   render() {
     return (
-      <div className="App ">
-        <div className="App-header">
-          <h2>FCC Calculator</h2>
-        </div>
-        <Output result={this.state.result} input={this.state.input}/>
-        <Keypad
-          calculate={this.calculate}
-          handleButtonClick={this.handleButtonClick}
-          handleClearClick={this.handleClearClick} />
+      <div className="">
+        <Layout>
+          <Content className="App">
+            <Output result={this.state.result} input={this.state.input}/>
+            <Keypad
+              calculate={this.calculate}
+              handleButtonClick={this.handleButtonClick}
+              handleClearClick={this.handleClearClick} />
+          </Content>
+        </Layout>
       </div>
     );
   }

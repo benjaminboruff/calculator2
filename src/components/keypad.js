@@ -1,4 +1,7 @@
 // @flow
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
+import { Button } from 'react-mdl';
 import React from 'react';
 import Key from './key';
 
@@ -26,7 +29,7 @@ function Keypad(props: Object) {
           handleClick={props.handleClearClick}/>);
   });
   return (
-    <div>
+    <div style={{width: '300px', margin: 'auto'}}>
       <h1>Keypad</h1>
       <br />
       {numberKeySet}
@@ -34,7 +37,7 @@ function Keypad(props: Object) {
       {operatorKeySet}
       <br />
       {clearKeySet}
-      <button onClick={props.calculate}>=</button>
+      <Button raised accent ripple onClick={props.calculate}>{'\uFF1D'}</Button>
     </div>
   );
 }
