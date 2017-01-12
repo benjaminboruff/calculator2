@@ -8,7 +8,8 @@ function Keypad(props: Object) {
   const clear = ["CLEAR", "UNDO"];
   let numberKeySet = numbers.map((number) => {
     return (
-      <Key key={number.toString(10)}
+      <Key
+          key={number.toString(10)}
           value={number.toString(10)}
           handleClick={props.handleButtonClick}/>);
   });
@@ -27,14 +28,13 @@ function Keypad(props: Object) {
   return (
     <div>
       <h1>Keypad</h1>
-      <span>{props.expression} </span>
-      <button onClick={props.calculate}>=</button>
       <br />
       {numberKeySet}
       <br />
       {operatorKeySet}
       <br />
       {clearKeySet}
+      <button onClick={props.calculate}>=</button>
     </div>
   );
 }

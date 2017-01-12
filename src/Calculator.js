@@ -7,24 +7,15 @@ import Keypad from'./components/keypad';
 // type declarations for state and props
 type State = {
   input: string,
-  expression: string,
   result: number
 };
 
-// type Props = {
-//   input1: string,
-//   input2: string
-// };
-
 class Calculator extends Component<void, void, State> {
-  //props: Props;
   state: State;
 
   constructor(props: Object) {
     super(props);
-    this.state = {result: 0, expression: "", input: ""};
-    // $FlowFixMe
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {result: 0, input: ""};
     // $FlowFixMe
     this.calculate = this.calculate.bind(this);
     // $FlowFixMe
@@ -33,21 +24,12 @@ class Calculator extends Component<void, void, State> {
     this.handleClearClick = this.handleClearClick.bind(this);
   }
 
-  handleChange(event: SyntheticInputEvent){
-    event.preventDefault();
-    // only allow proper patterns, e.g. .1+0.1+1 (no double .. or ending with an operator)
-    let regExpFilter = /^(\d*(\.(?!\.))?\d+)([\+\-\*\/]{1}\d*(\.(?!\.))?\d*)*[^\+\-\*\/\.]$/;
-    let inputArr = event.target.value.match(regExpFilter);
-    console.log(inputArr ? inputArr[0] : "");
-    this.setState({expression: inputArr ? inputArr[0] : this.state.expression});
-
-  }
-
+  // handle 0-1 and operator buttons
   handleButtonClick(event: SyntheticInputEvent){
     event.preventDefault();
     this.setState({input: this.state.input + event.target.value});
   }
-
+  // handle CLEAR and UNDO buttons
   handleClearClick(event: SyntheticInputEvent){
     event.preventDefault();
     if(event.target.value === "CLEAR") {
@@ -58,10 +40,9 @@ class Calculator extends Component<void, void, State> {
       this.setState({input: this.state.input.slice(0, -1), result: 0});
     }
   }
-
+  // handle "=" button click my performing the calculation
   calculate(event: SyntheticInputEvent){
     event.preventDefault();
-
     // only allow proper patterns, e.g. .1+0.1+1 (no double .. or ending with an operator)
     let regExpFilter = /^(\d*(\.(?!\.))?\d+)([\+\-\*\/]{1}\d*(\.(?!\.))?\d*)*[^\+\-\*\/\.]$/;
     console.log(this.state.input);
@@ -81,16 +62,15 @@ class Calculator extends Component<void, void, State> {
 
   render() {
     return (
-      <div className="App">
+      <div className="App ">
         <div className="App-header">
           <h2>FCC Calculator</h2>
         </div>
         <Output result={this.state.result} input={this.state.input}/>
-        <Keypad handleChange={this.handleChange}
+        <Keypad
           calculate={this.calculate}
           handleButtonClick={this.handleButtonClick}
-          handleClearClick={this.handleClearClick}
-          expression={this.state.expression}/>
+          handleClearClick={this.handleClearClick} />
       </div>
     );
   }
