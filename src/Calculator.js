@@ -1,7 +1,7 @@
 // @flow
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
-import { Layout, Content } from 'react-mdl';
+import { Layout, Content, Card, CardTitle, CardText, CardActions } from 'react-mdl';
 import React, { Component } from 'react';
 import './Calculator.css';
 import Output from'./components/output';
@@ -102,11 +102,20 @@ class Calculator extends Component<void, void, State> {
       <div className="">
         <Layout>
           <Content className="App">
-            <Output result={this.state.result} input={this.state.input}/>
-            <Keypad
-              calculate={this.calculate}
-              handleButtonClick={this.handleButtonClick}
-              handleClearClick={this.handleClearClick} />
+            <Card shadow={3} style={{width: '300px', height: '500px', margin: 'auto', marginTop: '25%', borderRadius: '10px', backgroundColor: '#dfd8d0'}}>
+              <CardTitle expand style={{background: '#3E4EB8', color: '#fff'}}>
+                <h4 style={{margin: 'auto'}}>Calculator</h4>
+              </CardTitle>
+              <CardText style={{width: '80%', margin: 'auto', marginTop: '10px', marginBottom: '10px', backgroundColor: '#c3c2ab', borderRadius: '5px', color: '#000'}}>
+                <Output result={this.state.result} input={this.state.input}/>
+              </CardText>
+              <CardActions border>
+                <Keypad
+                  calculate={this.calculate}
+                  handleButtonClick={this.handleButtonClick}
+                  handleClearClick={this.handleClearClick} />
+              </CardActions>
+            </Card>
           </Content>
         </Layout>
       </div>

@@ -30,8 +30,6 @@ function Keypad(props: Object) {
   });
   return (
     <div style={{width: '300px', margin: 'auto'}}>
-      <h1>Keypad</h1>
-      <br />
       {numberKeySet}
       <br />
       {operatorKeySet}
