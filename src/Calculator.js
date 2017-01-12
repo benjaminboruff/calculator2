@@ -7,6 +7,37 @@ import './Calculator.css';
 import Output from'./components/output';
 import Keypad from'./components/keypad';
 
+  // we need to remove the leading zeros from the
+  // numbers in the string, otherwise they are eval-ed
+  // as octal numbers
+  function removeLeadingZeros(str: string): string {
+    // array of numbers/args
+    let numbersArr = str.split(/[\+\-\*\/]/);
+    console.log(numbersArr);
+    // array of operators
+    let operatorsArr = str.split(/[0-9|.]+/);
+    // remove empty strings at begining and end
+    operatorsArr.pop();
+    operatorsArr.shift();
+    console.log(operatorsArr);
+
+    let cleanArr = [];
+    for(let i = 0; i < operatorsArr.length; i++) {
+      let tmpNumArr = numbersArr.shift().match(/[^0][.|0-9]*/);
+
+      let tmpStr = tmpNumArr ? tmpNumArr[0] : '0';
+      console.log(tmpStr);
+      cleanArr.push(tmpStr);
+      cleanArr.push(operatorsArr[i]);
+    }
+    console.log(numbersArr);
+    let tmpNumArr = numbersArr.shift().match(/[^0][.|0-9]*/);
+    let tmpStr = tmpNumArr ? tmpNumArr[0] : '0';
+    cleanArr.push(tmpStr);
+
+    return cleanArr.join("");
+  }
+
 // type declarations for state and props
 type State = {
   input: string,
@@ -83,4 +114,4 @@ class Calculator extends Component<void, void, State> {
   }
 }
 
-export default Calculator;
+export { Calculator, removeLeadingZeros };
