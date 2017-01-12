@@ -13,24 +13,24 @@ import Keypad from'./components/keypad';
   function removeLeadingZeros(str: string): string {
     // array of numbers/args
     let numbersArr = str.split(/[\+\-\*\/]/);
-    console.log(numbersArr);
+    //console.log(numbersArr);
     // array of operators
     let operatorsArr = str.split(/[0-9|.]+/);
     // remove empty strings at begining and end
     operatorsArr.pop();
     operatorsArr.shift();
-    console.log(operatorsArr);
+    //console.log(operatorsArr);
 
     let cleanArr = [];
     for(let i = 0; i < operatorsArr.length; i++) {
       let tmpNumArr = numbersArr.shift().match(/[^0][.|0-9]*/);
 
       let tmpStr = tmpNumArr ? tmpNumArr[0] : '0';
-      console.log(tmpStr);
+      //console.log(tmpStr);
       cleanArr.push(tmpStr);
       cleanArr.push(operatorsArr[i]);
     }
-    console.log(numbersArr);
+    //console.log(numbersArr);
     let tmpNumArr = numbersArr.shift().match(/[^0][.|0-9]*/);
     let tmpStr = tmpNumArr ? tmpNumArr[0] : '0';
     cleanArr.push(tmpStr);
@@ -88,7 +88,7 @@ class Calculator extends Component<void, void, State> {
 
     if(inputArr) {
       this.setState(
-        {result: Math.round(eval(this.state.input) * 1000000) /1000000}
+        {result: Math.round(eval(removeLeadingZeros(this.state.input)) * 1000000) /1000000}
       );
     } else {
       this.setState(
