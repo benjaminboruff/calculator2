@@ -71,7 +71,7 @@ class Calculator extends Component<void, void, State> {
   handleClearClick(event: SyntheticInputEvent){
     event.preventDefault();
     if(event.target.value === "CLEAR") {
-      console.log("CLEAR!");
+      //console.log("CLEAR!");
       this.setState({input: "", result: 0});
     }
     if(event.target.value === "UNDO") {
@@ -87,13 +87,13 @@ class Calculator extends Component<void, void, State> {
     event.preventDefault();
     // only allow proper patterns, e.g. .1+0.1+1 (no double .. or ending with an operator)
     let regExpFilter = /^(\d*(\.(?!\.))?\d+)([\+\-\*\/]{1}\d*(\.(?!\.))?\d*)*[^\+\-\*\/\.]$/;
-    console.log(this.state.input);
+    //console.log(this.state.input);
     let inputArr = this.state.input.match(regExpFilter);
-    console.log(inputArr ? "SUCCESS" : "FAIL");
+    //console.log(inputArr ? "SUCCESS" : "FAIL");
     // the leading zeros must be stripped, else the numbers are mistaken for octal
     if(inputArr) {
       this.setState(
-        {result: Math.round(eval(removeLeadingZeros(this.state.input)) * 1000000) /1000000}
+        {result: eval(removeLeadingZeros(this.state.input))}
       );
     } else {
       this.setState(

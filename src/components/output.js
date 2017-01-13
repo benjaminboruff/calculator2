@@ -4,10 +4,8 @@ import React from 'react';
 function Output(props: Object) {
   return (
     <div>
-      <div style={{fontSize: '1.6em'}}>
-        {props.result}
-      </div>
-      <p style={{margin: 'auto', marginTop: '60px'}}> {props.input}</p>
+      <div  style={{margin: 'auto', paddingRight: '3px', textAlign: 'right', fontSize: '1.6em'}}>{props.result}</div>
+      <p style={{margin: 'auto', marginTop: '60px', textAlign: 'right'}}> {props.input}</p>
     </div>
   );
 }
