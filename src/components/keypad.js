@@ -29,7 +29,7 @@ function Keypad(props: Object) {
   let clearKeySet = clear.map((clearKey) => {
     return (
       <Key
-          style={{width: '75px', margin: '2px', fontWeight: '700'}}
+          style={{width: '75px', margin: '15px', fontWeight: '700'}}
           key={clearKey}
           value={clearKey}
           handleClick={props.handleClearClick} />);
@@ -40,7 +40,7 @@ function Keypad(props: Object) {
       <br />
       {operatorKeySet}
       <br />
-      <Button raised accent ripple style={{margin: '1px', width: '154px', fontWeight: '900'}} onClick={props.calculate}>{'\uFF1D'}</Button>
+      <Button raised accent ripple style={{margin: '1px', width: '268px', fontWeight: '900'}} onClick={props.calculate}>{'\uFF1D'}</Button>
       <br />
       {clearKeySet}
 

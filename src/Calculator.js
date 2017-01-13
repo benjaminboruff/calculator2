@@ -61,7 +61,7 @@ class Calculator extends Component<void, void, State> {
   // handle 0-1 and operator buttons
   handleButtonClick(event: SyntheticInputEvent){
     event.preventDefault();
-    if(this.state.input.length === 25) {
+    if(this.state.input.length === 31) {
       this.setState({input: '**Digital Limit Reached**'});
     } else {
       this.setState({input: this.state.input + event.target.value});
@@ -75,7 +75,7 @@ class Calculator extends Component<void, void, State> {
       this.setState({input: "", result: 0});
     }
     if(event.target.value === "UNDO") {
-      if(this.state.input.length === 25) {
+      if(this.state.input.length === 31) {
           this.setState({input: "", result: 0});
       } else {
           this.setState({input: this.state.input.slice(0, -1), result: 0});
@@ -114,12 +114,12 @@ class Calculator extends Component<void, void, State> {
               <CardTitle expand style={{background: '#3E4EB8', color: '#fff'}}>
                 <h4 style={{margin: 'auto'}}>Calculator</h4>
               </CardTitle>
-              <CardText style={{width: '80%', margin: 'auto', marginTop: '10px',
+              <CardText style={{width: '80%', height: '100px', margin: 'auto', marginTop: '10px',
                                 marginBottom: '10px',
                                 backgroundColor: '#e0e0e0',
                                 borderRadius: '5px',
                                 color: '#000'}}>
-                <Output result={this.state.result} input={this.state.input}/>
+                <Output result={this.state.result} input={this.state.input} />
               </CardText>
               <CardActions border>
                 <Keypad

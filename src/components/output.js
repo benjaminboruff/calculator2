@@ -4,8 +4,10 @@ import React from 'react';
 function Output(props: Object) {
   return (
     <div>
-      <h3>{props.result}</h3>
-      <p>Input: {props.input}</p>
+      <div style={{fontSize: '1.6em'}}>
+        {props.result}
+      </div>
+      <p style={{margin: 'auto', marginTop: '60px'}}> {props.input}</p>
     </div>
   );
 }
