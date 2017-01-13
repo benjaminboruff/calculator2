@@ -61,10 +61,11 @@ class Calculator extends Component<void, void, State> {
   // handle 0-1 and operator buttons
   handleButtonClick(event: SyntheticInputEvent){
     event.preventDefault();
-    // if(event.target.value.match(/\+\-\*\/]/)) {
-    // STRIP OCTAL!!!!!
-    // }
-    this.setState({input: this.state.input + event.target.value});
+    if(this.state.input.length === 25) {
+      this.setState({input: '**Digital Limit Reached**'});
+    } else {
+      this.setState({input: this.state.input + event.target.value});
+    }
   }
   // handle CLEAR and UNDO buttons
   handleClearClick(event: SyntheticInputEvent){
@@ -74,7 +75,11 @@ class Calculator extends Component<void, void, State> {
       this.setState({input: "", result: 0});
     }
     if(event.target.value === "UNDO") {
-      this.setState({input: this.state.input.slice(0, -1), result: 0});
+      if(this.state.input.length === 25) {
+          this.setState({input: "", result: 0});
+      } else {
+          this.setState({input: this.state.input.slice(0, -1), result: 0});
+      }
     }
   }
   // handle "=" button click my performing the calculation
@@ -85,7 +90,7 @@ class Calculator extends Component<void, void, State> {
     console.log(this.state.input);
     let inputArr = this.state.input.match(regExpFilter);
     console.log(inputArr ? "SUCCESS" : "FAIL");
-
+    // the leading zeros must be stripped, else the numbers are mistaken for octal
     if(inputArr) {
       this.setState(
         {result: Math.round(eval(removeLeadingZeros(this.state.input)) * 1000000) /1000000}
@@ -102,11 +107,18 @@ class Calculator extends Component<void, void, State> {
       <div className="">
         <Layout>
           <Content className="App">
-            <Card shadow={3} style={{width: '300px', height: '500px', margin: 'auto', marginTop: '25%', borderRadius: '10px', backgroundColor: '#dfd8d0'}}>
+            <Card shadow={3} style={{width: '300px', height: '500px',
+                                    margin: 'auto', marginTop: '20%',
+                                    borderRadius: '10px',
+                                    backgroundColor: '#f5f5f5'}}>
               <CardTitle expand style={{background: '#3E4EB8', color: '#fff'}}>
                 <h4 style={{margin: 'auto'}}>Calculator</h4>
               </CardTitle>
-              <CardText style={{width: '80%', margin: 'auto', marginTop: '10px', marginBottom: '10px', backgroundColor: '#c3c2ab', borderRadius: '5px', color: '#000'}}>
+              <CardText style={{width: '80%', margin: 'auto', marginTop: '10px',
+                                marginBottom: '10px',
+                                backgroundColor: '#e0e0e0',
+                                borderRadius: '5px',
+                                color: '#000'}}>
                 <Output result={this.state.result} input={this.state.input}/>
               </CardText>
               <CardActions border>

@@ -6,36 +6,44 @@ import React from 'react';
 import Key from './key';
 
 function Keypad(props: Object) {
-  const numbers = [0,1,2,3,4,5,6,7,8,9];
-  const operators = ["+", "-", "*", "/", "."];
+  const numbers = ['1','2','3','4','5','6','7','8','9','0','.'];
+  const operators = ["+", "-", "*", "/"];
   const clear = ["CLEAR", "UNDO"];
   let numberKeySet = numbers.map((number) => {
     return (
       <Key
-          key={number.toString(10)}
-          value={number.toString(10)}
-          handleClick={props.handleButtonClick}/>);
+          style={{margin: '2px', fontWeight: '900'}}
+          key={number}
+          value={number}
+          handleClick={props.handleButtonClick} />);
   });
   let operatorKeySet = operators.map((operator) => {
     return (
-      <Key key={operator}
+      <Key
+          accent="accent"
+          style={{margin: '2px', fontWeight: '900'}}
+          key={operator}
           value={operator}
-          handleClick={props.handleButtonClick}/>);
+          handleClick={props.handleButtonClick} />);
   });
   let clearKeySet = clear.map((clearKey) => {
     return (
-      <Key key={clearKey}
+      <Key
+          style={{width: '75px', margin: '2px', fontWeight: '700'}}
+          key={clearKey}
           value={clearKey}
-          handleClick={props.handleClearClick}/>);
+          handleClick={props.handleClearClick} />);
   });
   return (
-    <div style={{width: '300px', margin: 'auto'}}>
+    <div>
       {numberKeySet}
       <br />
       {operatorKeySet}
       <br />
+      <Button raised accent ripple style={{margin: '1px', width: '154px', fontWeight: '900'}} onClick={props.calculate}>{'\uFF1D'}</Button>
+      <br />
       {clearKeySet}
-      <Button raised accent ripple onClick={props.calculate}>{'\uFF1D'}</Button>
+
     </div>
   );
 }

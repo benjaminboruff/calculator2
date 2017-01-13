@@ -5,7 +5,7 @@ function Output(props: Object) {
   return (
     <div>
       <h3>{props.result}</h3>
-      <h6>Input: {props.input}</h6>
+      <p>Input: {props.input}</p>
     </div>
   );
 }
