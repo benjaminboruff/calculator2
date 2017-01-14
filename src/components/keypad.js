@@ -1,49 +1,71 @@
 // @flow
-import 'react-mdl/extra/material.css';
-import 'react-mdl/extra/material.js';
-import { Button } from 'react-mdl';
+import { ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import React from 'react';
 import Key from './key';
 
 function Keypad(props: Object) {
+  const row1 = ['1','2','3','+'];
+  const row2 = ['4','5','6','-'];
+  const row3 = ['7','8','9','*'];
+  const row4 = ['0','.',' ','/'];
+
   const numbers = ['1','2','3','4','5','6','7','8','9','0','.'];
   const operators = ["+", "-", "*", "/"];
   const clear = ["CLEAR", "UNDO"];
+
   let numberKeySet = numbers.map((number) => {
     return (
       <Key
-          style={{margin: '2px', fontWeight: '900'}}
+          type="number"
           key={number}
           value={number}
           handleClick={props.handleButtonClick} />);
   });
+
   let operatorKeySet = operators.map((operator) => {
     return (
       <Key
-          accent="accent"
-          style={{margin: '2px', fontWeight: '900'}}
+          type="operator"
           key={operator}
           value={operator}
           handleClick={props.handleButtonClick} />);
   });
+
   let clearKeySet = clear.map((clearKey) => {
     return (
       <Key
-          style={{width: '75px', margin: '15px', fontWeight: '700'}}
           key={clearKey}
           value={clearKey}
           handleClick={props.handleClearClick} />);
   });
+
+  let equalKey = <Key value="=" handleClick={props.calculate}></Key>;
+
   return (
     <div>
-      {numberKeySet}
+      <ButtonToolbar style={{margin: 'auto'}}>
+        <ButtonGroup>
+          {numberKeySet}
+        </ButtonGroup>
+      </ButtonToolbar>
       <br />
-      {operatorKeySet}
+      <ButtonToolbar style={{margin: 'auto'}}>
+        <ButtonGroup>
+          {operatorKeySet}
+        </ButtonGroup>
+      </ButtonToolbar>
       <br />
-      <Button raised accent ripple style={{margin: '1px', width: '268px', fontWeight: '900'}} onClick={props.calculate}>{'\uFF1D'}</Button>
+      <ButtonToolbar style={{margin: '5px'}}>
+        <ButtonGroup vertical block>
+          {equalKey}
+        </ButtonGroup>
+      </ButtonToolbar>
       <br />
-      {clearKeySet}
-
+      <ButtonToolbar style={{margin: 'auto'}}>
+        <ButtonGroup>
+          {clearKeySet}
+        </ButtonGroup>
+      </ButtonToolbar>
     </div>
   );
 }
