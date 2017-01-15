@@ -24,9 +24,11 @@
     margin-top: 150px;
     border-radius: 20px;
     background-color: #f5f5f5;
-    box-shadow: 0 0 15px black;
+    box-shadow: 0 1px 3px black;
 }
 .panel-custom > .panel-heading {
+    height: 50px;
+    padding-top: 16px;
     background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
     margin-top: -1px;
     margin-left: -1px;
