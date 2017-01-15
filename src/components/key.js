@@ -1,6 +1,7 @@
 // @flow
 import { Button } from 'react-bootstrap';
 import React from 'react';
+import './key.css';
 
 // a <Key value="something" /> component must have a value prop
 function Key (props: Object) {
@@ -37,6 +38,7 @@ function Key (props: Object) {
       if(props.value === 'CLEAR' || props.value === 'UNDO') {
         return(
           <Button
+            id={props.value.toLowerCase()}
             bsStyle="danger"
             style={props.style}
             value={props.value}
@@ -50,9 +52,9 @@ function Key (props: Object) {
       if(props.value === "=") {
         return(
           <Button
+            id="equals"
             bsSize="large"
             bsStyle="success"
-            style={{width: '218px',marginLeft: '18px', fontWeight: '900'}}
             value={props.value}
             onClick={props.handleClick}>
             {symbol}
@@ -64,9 +66,9 @@ function Key (props: Object) {
       if(props.value.match(/[0-9\.]/)) {
         return(
           <Button
+            className="numops"
             bsStyle="primary"
             value={props.value}
-            style={{width: '50px', margin: '3px', fontWeight: '900'}}
             onClick={props.handleClick}>
             {symbol}
           </Button>
@@ -77,9 +79,9 @@ function Key (props: Object) {
       if(props.value.match(/[\+\-\*\/]/)) {
         return(
           <Button
+            className="numops"
             bsStyle="primary"
             value={props.value}
-            style={{width: '50px', margin: '3px', fontWeight: '900'}}
             onClick={props.handleClick}>
             {symbol}
           </Button>
@@ -91,9 +93,8 @@ function Key (props: Object) {
         return(
           <Button
             disabled
+            id="blank"
             value={props.value}
-            style={{width: '50px', margin: '3px', backgroundColor: '#f5f5f5',
-                  color: '#f5f5f5', border: 'none'}}
             onClick={props.handleClick}>
             <span>o</span>
           </Button>

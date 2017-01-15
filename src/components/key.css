@@ -1,0 +1,30 @@
+#clear {
+  margin-left: 25px;
+  width: 75px;
+}
+
+#undo {
+  margin-left: 60px;
+  width: 75px;
+}
+
+#equals {
+  width: 210px;
+  margin-left: 25px;
+  font-weight: 900;
+}
+
+#blank {
+  width: 45px;
+  margin: 4px;
+  background-color: #f5f5f5;
+  color: #f5f5f5;
+  border: none;
+  cursor: default;
+}
+
+.numops {
+  width: 50px;
+  margin: 4px;
+  font-weight: 900;
+}

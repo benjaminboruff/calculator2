@@ -1,0 +1,16 @@
+#display {
+  height: 100px;
+  background-image: linear-gradient(to bottom,#ccc 0,#ddd 100%);
+  border-color: #ccc;
+}
+
+#result {
+  padding-right: 3px;
+  text-align: right;
+  font-size: 1.6em;
+}
+
+#input {
+  margin-top: 20px;
+  text-align: right;
+}

@@ -116,8 +116,13 @@ class Calculator extends Component<void, void, State> {
                 handleButtonClick={this.handleButtonClick}
                 handleClearClick={this.handleClearClick} />
             </Panel>
-            <div style={{color: '#f5f5f5', textAlign: 'center', position: 'absolute', width: '100%', marginTop: '25px'}}>
-              Designed and coded by <a style={{textDecoration: 'none', color: '#3E4EB8'}} href="http://stackoverflow.com/story/benjaminboruff">Benjamin H Boruff</a> &copy;2017
+            <div>
+              <p id="copy">Designed and coded by
+                <a href="http://stackoverflow.com/story/benjaminboruff">
+                   Benjamin H Boruff
+                </a> 
+                &copy;2017
+              </p>
             </div>
           </div>
         </div>

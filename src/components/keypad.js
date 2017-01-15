@@ -2,6 +2,7 @@
 import { ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import React from 'react';
 import Key from './key';
+import './keypad.css';
 
 function Keypad(props: Object) {
   const row1 = ['1','2','3','+'];
@@ -52,13 +53,11 @@ function Keypad(props: Object) {
   let clearKeySet = (
     <div>
       <Key
-        style={{marginLeft: '18px'}}
         key="CLEAR"
         value="CLEAR"
         handleClick={props.handleClearClick}
       />
       <Key
-        style={{marginLeft: '79px'}}
         key="UNDO"
         value="UNDO"
         handleClick={props.handleClearClick}
@@ -70,7 +69,7 @@ function Keypad(props: Object) {
 
   return (
     <div>
-      <ButtonToolbar style={{margin: '15px'}}>
+      <ButtonToolbar id="number-pad" >
         <ButtonGroup>
           {row1KeySet}
         </ButtonGroup>
@@ -84,13 +83,13 @@ function Keypad(props: Object) {
           {row4KeySet}
         </ButtonGroup>
       </ButtonToolbar>
-      <ButtonToolbar style={{margin: 'auto'}}>
+      <ButtonToolbar id="equals-pad" >
         <ButtonGroup>
           {equalKey}
         </ButtonGroup>
       </ButtonToolbar>
       <br />
-      <ButtonToolbar style={{margin: 'auto'}}>
+      <ButtonToolbar id="clear-pad" >
         <ButtonGroup>
           {clearKeySet}
         </ButtonGroup>
