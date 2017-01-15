@@ -7,56 +7,85 @@ function Keypad(props: Object) {
   const row1 = ['1','2','3','+'];
   const row2 = ['4','5','6','-'];
   const row3 = ['7','8','9','*'];
-  const row4 = ['0','.',' ','/'];
+  const row4 = ['0','.','blank','/'];
 
-  const numbers = ['1','2','3','4','5','6','7','8','9','0','.'];
-  const operators = ["+", "-", "*", "/"];
-  const clear = ["CLEAR", "UNDO"];
-
-  let numberKeySet = numbers.map((number) => {
+  let row1KeySet = row1.map((item) => {
     return (
       <Key
-          type="number"
-          key={number}
-          value={number}
-          handleClick={props.handleButtonClick} />);
+        key={item}
+        value={item}
+        handleClick={props.handleButtonClick}
+      />
+    );
   });
 
-  let operatorKeySet = operators.map((operator) => {
+  let row2KeySet = row2.map((item) => {
     return (
       <Key
-          type="operator"
-          key={operator}
-          value={operator}
-          handleClick={props.handleButtonClick} />);
+        key={item}
+        value={item}
+        handleClick={props.handleButtonClick}
+      />
+    );
   });
 
-  let clearKeySet = clear.map((clearKey) => {
+  let row3KeySet = row3.map((item) => {
     return (
       <Key
-          key={clearKey}
-          value={clearKey}
-          handleClick={props.handleClearClick} />);
+        key={item}
+        value={item}
+        handleClick={props.handleButtonClick}
+      />
+    );
   });
+
+  let row4KeySet = row4.map((item) => {
+    return (
+      <Key
+        key={item}
+        value={item}
+        handleClick={props.handleButtonClick}
+      />
+    );
+  });
+
+  let clearKeySet = (
+    <div>
+      <Key
+        style={{marginLeft: '18px'}}
+        key="CLEAR"
+        value="CLEAR"
+        handleClick={props.handleClearClick}
+      />
+      <Key
+        style={{marginLeft: '79px'}}
+        key="UNDO"
+        value="UNDO"
+        handleClick={props.handleClearClick}
+      />
+    </div>
+  );
 
   let equalKey = <Key value="=" handleClick={props.calculate}></Key>;
 
   return (
     <div>
-      <ButtonToolbar style={{margin: 'auto'}}>
+      <ButtonToolbar style={{margin: '15px'}}>
         <ButtonGroup>
-          {numberKeySet}
+          {row1KeySet}
+        </ButtonGroup>
+        <ButtonGroup>
+          {row2KeySet}
+        </ButtonGroup>
+        <ButtonGroup>
+          {row3KeySet}
+        </ButtonGroup>
+        <ButtonGroup>
+          {row4KeySet}
         </ButtonGroup>
       </ButtonToolbar>
-      <br />
       <ButtonToolbar style={{margin: 'auto'}}>
         <ButtonGroup>
-          {operatorKeySet}
-        </ButtonGroup>
-      </ButtonToolbar>
-      <br />
-      <ButtonToolbar style={{margin: '5px'}}>
-        <ButtonGroup vertical block>
           {equalKey}
         </ButtonGroup>
       </ButtonToolbar>

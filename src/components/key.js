@@ -24,6 +24,9 @@ function Key (props: Object) {
         case '=':
           symbol = '\uFF1D';
           break;
+        case 'blank':
+          symbol = '0';
+          break;
         default:
           // key is a number or CLEAR/UNDO
           symbol = props.value;
@@ -35,6 +38,7 @@ function Key (props: Object) {
         return(
           <Button
             bsStyle="danger"
+            style={props.style}
             value={props.value}
             onClick={props.handleClick}>
             {symbol}
@@ -48,7 +52,7 @@ function Key (props: Object) {
           <Button
             bsSize="large"
             bsStyle="success"
-            style={{fontWeight: '900'}}
+            style={{width: '218px',marginLeft: '18px', fontWeight: '900'}}
             value={props.value}
             onClick={props.handleClick}>
             {symbol}
@@ -62,7 +66,7 @@ function Key (props: Object) {
           <Button
             bsStyle="primary"
             value={props.value}
-            style={{margin: '1px', fontWeight: '900'}}
+            style={{width: '50px', margin: '3px', fontWeight: '900'}}
             onClick={props.handleClick}>
             {symbol}
           </Button>
@@ -75,9 +79,23 @@ function Key (props: Object) {
           <Button
             bsStyle="primary"
             value={props.value}
-            style={{margin: '1px', fontWeight: '900'}}
+            style={{width: '50px', margin: '3px', fontWeight: '900'}}
             onClick={props.handleClick}>
             {symbol}
+          </Button>
+        );
+      }
+
+      // the blank button
+      if(props.value === 'blank') {
+        return(
+          <Button
+            disabled
+            value={props.value}
+            style={{width: '50px', margin: '3px', backgroundColor: '#f5f5f5',
+                  color: '#f5f5f5', border: 'none'}}
+            onClick={props.handleClick}>
+            <span>o</span>
           </Button>
         );
       }

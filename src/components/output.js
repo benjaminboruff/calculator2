@@ -1,12 +1,14 @@
 // @flow
 import React from 'react';
+import { Well } from 'react-bootstrap';
+
 
 function Output(props: Object) {
   return (
-    <div>
-      <div  style={{margin: 'auto', paddingRight: '3px', textAlign: 'right', fontSize: '1.6em'}}>{props.result}</div>
-      <p style={{margin: 'auto', marginTop: '60px', textAlign: 'right'}}> {props.input}</p>
-    </div>
+    <Well style={{height: '100px'}}>
+      <div  style={{paddingRight: '3px', textAlign: 'right', fontSize: '1.6em'}}>{props.result}</div>
+      <div style={{marginTop: '20px', textAlign: 'right'}}>{props.input}</div>
+    </Well>
   );
 }
 

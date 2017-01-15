@@ -1,5 +1,6 @@
 // @flow
-// import { Layout, Content, Card, CardTitle, CardText, CardActions } from 'react-mdl';
+import { Panel } from 'react-bootstrap';
+import { bootstrapUtils } from 'react-bootstrap/lib/utils';
 import React, { Component } from 'react';
 import './Calculator.css';
 import Output from'./components/output';
@@ -101,37 +102,25 @@ class Calculator extends Component<void, void, State> {
   }
 
   render() {
+    // add custom Panel style for Panel header
+    bootstrapUtils.addStyle(Panel, 'custom');
+    let title = <h4 style={{margin: 'auto'}}>Calculator</h4>;
     return (
       <div className="">
         <div>
           <div className="App">
-            <div style={{width: '300px', height: '500px',
-                                    margin: 'auto', marginTop: '150px',
-                                    borderRadius: '10px',
-                                    backgroundColor: '#f5f5f5'}}>
-              <div style={{background: '#3E4EB8', color: '#fff'}}>
-                <h4 style={{margin: 'auto'}}>Calculator</h4>
-              </div>
-              <div style={{width: '80%', height: '100px', margin: 'auto', marginTop: '10px',
-                                marginBottom: '10px',
-                                backgroundColor: '#e0e0e0',
-                                borderRadius: '5px',
-                                color: '#000'}}>
-                <Output result={this.state.result} input={this.state.input} />
-              </div>
-              <div>
-                <Keypad
-                  calculate={this.calculate}
-                  handleButtonClick={this.handleButtonClick}
-                  handleClearClick={this.handleClearClick} />
-              </div>
+            <Panel header={title} bsStyle="custom">
+              <Output result={this.state.result} input={this.state.input} />
+              <Keypad
+                calculate={this.calculate}
+                handleButtonClick={this.handleButtonClick}
+                handleClearClick={this.handleClearClick} />
+            </Panel>
+            <div style={{color: '#f5f5f5', textAlign: 'center', position: 'absolute', width: '100%', marginTop: '25px'}}>
+              Designed and coded by <a style={{textDecoration: 'none', color: '#3E4EB8'}} href="http://stackoverflow.com/story/benjaminboruff">Benjamin H Boruff</a> &copy;2017
             </div>
-              <div style={{color: '#f5f5f5', textAlign: 'center', position: 'absolute', width: '100%', marginTop: '25px'}}>
-                Designed and coded by <a style={{textDecoration: 'none', color: '#3E4EB8'}} href="http://stackoverflow.com/story/benjaminboruff">Benjamin H Boruff</a> &copy;2017
-              </div>
-            </div>
+          </div>
         </div>
-
       </div>
     );
   }
